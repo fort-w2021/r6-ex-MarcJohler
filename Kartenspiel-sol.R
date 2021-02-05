@@ -1,13 +1,8 @@
-# object for a bavarian card deck
+# class for a bavarian card deck
 deck <- R6::R6Class("deck",
   public = list(
-    deck_id = NA,
     card_stack = NA,
-    initialize = function(deck_id) {
-      # deck_id must be an integerish single number
-      checkmate::assert_count(deck_id)
-      # set name for deck
-      self$deck_id <- deck_id
+    initialize = function() {
       # reset deck (see below)
       self$reset()
     },
@@ -57,3 +52,20 @@ deck <- R6::R6Class("deck",
     }
   )
 )
+
+# Was wäre hier wesentlich anders/komplizierter wenn Sie diese Klasse und Methoden
+# mit S3 oder S4 implementieren würden?
+#
+# ANTWORT: sämtliche Methoden, die etwas am card_stack ändern, müssten in der Form:
+# object <- function(object, ...) verwendet werden. Wenn eine Änderung am
+# card_stack gefordert ist und zudem ein bestimmter Rückgabewert erwartet wird
+# (z.B. bei draw), wird dies syntaktisch noch komplizierter, da der neue Zustand
+# des card_stacks sowie der zusätzlich erwartete Wert als Liste zurückgegeben
+# werden muss (z.B. die gezogenen Karten bei draw):
+# list <- function(object, ...)
+# object <- list[[1]] --> Änderung des Zustands
+# output <- list[[2]] --> was interessiert den User eigentlich?
+#
+# statt einfach:
+#
+# output <- object$methode(...)

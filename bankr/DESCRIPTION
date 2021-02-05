@@ -1,0 +1,20 @@
+Package: bankr
+Title: Bank account management system
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Marc",
+           family = "Johler",
+           role = c("aut", "cre"),
+           email = "marc.johler@example.com",
+           comment = c(ORCID = "XXXX-XX-XX"))
+Description: This package offers some class definitions for different kinds of bank accounts.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests: 
+    testthat
+Imports: 
+    R6,
+    checkmate
